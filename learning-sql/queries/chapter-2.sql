@@ -36,4 +36,60 @@ alter table person
 insert into person (fname, lname, eye_color, birth_date)
 values ('William', 'Turner', 'BR', '1972-05-27');
 
-select person_id, fname, lname, birth_date from person;
+select person_id, fname, lname, birth_date
+from person;
+
+insert into favorite_food (person_id, food)
+values (1, 'pizza');
+
+insert into favorite_food (person_id, food)
+values (1, 'cookies');
+
+insert into favorite_food (person_id, food)
+values (1, 'nachos');
+
+select food
+from favorite_food
+where person_id = 1
+order by food;
+
+insert into person (fname, lname, eye_color, birth_date, street, city, state, country, postal_code)
+values ('Susan', 'Smith', 'BL', '1975-11-02', '23 Maple St.', 'Arlington', 'VA', 'USA', '20220');
+
+select query_to_xml(
+               'select person_id, fname, lname from person',
+               true,
+               true,
+               ''
+       );
+
+update person
+set street      = '1225 Tremont St.',
+    city        = 'Boston',
+    state       = 'MA',
+    country     = 'USA',
+    postal_code = '02138'
+where person_id = 1;
+
+delete
+from person
+where person_id = 2;
+
+INSERT INTO person
+    (person_id, fname, lname, eye_color, birth_date)
+VALUES (1, 'Charles', 'Fulton', 'GR', '1968-01-15');
+
+INSERT INTO favorite_food (person_id, food)
+VALUES (999, 'lasagna');
+
+update person
+set eye_color = 'ZZ'
+where person_id = 1;
+
+update person
+set birth_date = 'DEC-21-1980'
+where person_id = 1;
+
+update person
+set birth_date = to_date('DEC-23-1990', 'MON-DD-YY')
+where person_id = 1;
